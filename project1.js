@@ -19,12 +19,24 @@ $(document).ready(function () {
                     var title = $('<h2>').text(receipesDataBasedOnInput[i].recipe.label);
                     var img = $('<img>').attr('src', receipesDataBasedOnInput[i].recipe.image).attr('width', '300px').attr('height', '300px');
                     var link = $('<a>').attr('href', receipesDataBasedOnInput[i].recipe.url).text('link to this recipe');
-                    var calories = $('<p>').text("Calories: " + receipesDataBasedOnInput[i].recipe.calories + "Kcal");
+                    var calories = $('<p>').text("Calories: " + receipesDataBasedOnInput[i].recipe.calories + " Kcal");
+                    var dietLabels = $('<p>').text(receipesDataBasedOnInput[i].recipe.dietLabels);
+                    var healthLabels = $('<p>').text(receipesDataBasedOnInput[i].recipe.healthLabels);
+                    console.log(receipesDataBasedOnInput[i].recipe.ingredients.length);
                     newDiv.append(title);
+                    var div = $('<div>').attr('class', 'ingredients');
+                    for (var j = 0; j < receipesDataBasedOnInput[j].recipe.ingredients.length; j++){
+                        var ingredients = receipesDataBasedOnInput[j].recipe.ingredientLines[j];
+                        var li = $('<li>').text(ingredients);
+                        div.append(li);
+                    }
+                    newDiv.append(dietLabels);
+                    newDiv.append(healthLabels);
                     newDiv.append(calories);
                     newDiv.append(img);
                     newDiv.append(link);
                     $('body').append(newDiv);
+                    $('body').append(div);
                 }
 
             })

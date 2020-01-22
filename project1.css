@@ -6,13 +6,17 @@ h1{
     font-family: 'Bangers', cursive;
     font-size: 100px;
 }
+
+p{
+    font-size: 13px;
+    float: left;
+}
 .input{
  position: relative;
  left: 27%;
 }
 ::-webkit-input-placeholder {
-    padding-left: 10px;
-    text-align: left;
+    text-align: center;
     color: rgb(49, 58, 66);
  }
 .ing{
@@ -34,25 +38,36 @@ button{
     background-color: grey;
 }
 .col-to{
+    margin-left: 30px;
     border:2px solid rgb(112, 10, 10);
     border-radius: 20px;
-    width: 50px;
-    height: 20px;
+    width: 350px;
+    height: 30px;
     background-color: rgb(160, 95, 109);
     color: aliceblue;
+    text-align: center;
 }
 .col-from{
-    margin-top:50px;
+    margin-left: 30px;
     position: relative;
     border-radius: 20px;
     border:2px solid rgb(112, 10, 10);
-    width: 50px;
-    height: 20px;
+    width: 350px;
+    height: 30px;
     background-color: rgb(160, 95, 109);
     color: aliceblue;
+    text-align: center;
 }
 p{
     display: inline;
     font-family: Arial, Helvetica, sans-serif;
     margin: 5px;
+}
+
+img{
+    float: left;
+}
+
+div{
+    float: left;
 }

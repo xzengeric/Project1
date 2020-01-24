@@ -42,9 +42,10 @@ $(document).ready(function () {
                     var title = $('<h2>').text(receipesDataBasedOnInput[i].recipe.label);
                     var img = $('<img>').attr('src', receipesDataBasedOnInput[i].recipe.image).attr('href', receipesDataBasedOnInput[i].recipe.url).attr('width', '300px').attr('height', '300px');
                     var link = $('<a>').attr('href', receipesDataBasedOnInput[i].recipe.url);
-                    var calories = receipesDataBasedOnInput[i].recipe.calories 
-                    var serving = receipesDataBasedOnInput[i].recipe.yield 
-                    var caloriesPerServing = $('<li>').text("Total Calories: " + calories / serving + " Kcal");
+                    var calories = receipesDataBasedOnInput[i].recipe.calories; 
+                    var serving = receipesDataBasedOnInput[i].recipe.yield; 
+                    var calRange = calories / serving;
+                    var caloriesPerServing = $('<li>').text("Total Calories: " + calRange.toFixed(2) + " Kcal");
                     var dietLabels = $('<li>').text("Diet Labels: " + receipesDataBasedOnInput[i].recipe.dietLabels);
                     var healthLabels = $('<li>').text("Health Lables: " + receipesDataBasedOnInput[i].recipe.healthLabels);
                     newDiv.append(title);

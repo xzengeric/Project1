@@ -1,13 +1,16 @@
 $(document).ready(function () {
+
     var app_id = "98b05697";
     var app_key = "66b497d1c74de44a3ee14c66199e0618";
 
     // Added a specific id for the button to attach the handler
     $("#submitButton").click(function () {
-
+        // alert("it is running the click handler inside ready function");
         $('h1').hide();
         $('.input').hide();
-        
+        // Removing the "hide", so the search area can still be reused with reloading the page
+        //$('h1').hide();
+        //$('div').hide();
         var q = $('.ing').val();
         console.log(q);
         var calFrom = $('.col-from').val();
@@ -32,16 +35,16 @@ $(document).ready(function () {
                 return response.json();
             })
             .then(function (recipesData) {
+                console.log(recipesData);
                 var receipesDataBasedOnInput = recipesData.hits;
-
                 for (var i = 0; i < 5; i++){
-
-
                     var newDiv = $('<div>').attr('class', 'recipe' + i);
                     var title = $('<h2>').text(receipesDataBasedOnInput[i].recipe.label);
                     var img = $('<img>').attr('src', receipesDataBasedOnInput[i].recipe.image).attr('href', receipesDataBasedOnInput[i].recipe.url).attr('width', '300px').attr('height', '300px');
                     var link = $('<a>').attr('href', receipesDataBasedOnInput[i].recipe.url);
-                    var calories = $('<li>').text("Total Calories: " + receipesDataBasedOnInput[i].recipe.calories + " Kcal");
+                    var calories = receipesDataBasedOnInput[i].recipe.calories 
+                    var serving = receipesDataBasedOnInput[i].recipe.yield 
+                    var caloriesPerServing = $('<li>').text("Total Calories: " + calories / serving + " Kcal");
                     var dietLabels = $('<li>').text("Diet Labels: " + receipesDataBasedOnInput[i].recipe.dietLabels);
                     var healthLabels = $('<li>').text("Health Lables: " + receipesDataBasedOnInput[i].recipe.healthLabels);
                     newDiv.append(title);
@@ -49,7 +52,6 @@ $(document).ready(function () {
                     for (var j = 0; j < receipesDataBasedOnInput[i].recipe.ingredients.length; j++){
                       
                         var ingredients = receipesDataBasedOnInput[i].recipe.ingredientLines[j];
-
                         var li = $('<li>').text(ingredients);
                         div.append(li);
                     }
@@ -58,7 +60,7 @@ $(document).ready(function () {
                     newDiv.append($('<br>'));
                     newDiv.append(healthLabels);
                     newDiv.append($('<br>'));
-                    newDiv.append(calories);
+                    newDiv.append(caloriesPerServing);
                     newDiv.append($('<br>'));
                     newDiv.append(link);
                     link.append(img);
@@ -69,9 +71,8 @@ $(document).ready(function () {
                         div.css('position', 'absolute').css('right','3px');
                     }
                     
-
-
                 }
+
             })
     })
 })

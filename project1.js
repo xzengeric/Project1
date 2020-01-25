@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-    alert("Running the document ready function");
     var app_id = "98b05697";
     var app_key = "66b497d1c74de44a3ee14c66199e0618";
 

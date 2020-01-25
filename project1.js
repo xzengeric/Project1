@@ -3,30 +3,34 @@ $(document).ready(function () {
     var app_id = "98b05697";
     var app_key = "66b497d1c74de44a3ee14c66199e0618";
 
-    // Added a specific id for the button to attach the handler
     $("#submitButton").click(function () {
-        // alert("it is running the click handler inside ready function");
         $('h1').hide();
         $('.input').hide();
-        // Removing the "hide", so the search area can still be reused with reloading the page
-        //$('h1').hide();
-        //$('div').hide();
         var q = $('.ing').val();
-        console.log(q);
         var calFrom = $('.col-from').val();
         var calTo = $('.col-to').val();
-        var allRecipes = $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4');
-        // Added this check because if the user doesn't
-        // enter, the API will fail (no calories in URL will fail)
-        if (calFrom != "" && calTo != "") {
-            var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}`;
-        } else {
-            var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}`;
-        }
+        var foodType = $('.food-type').val();
 
+        if (calFrom != "" && calTo != "") {
+            if (foodType != "") {
+                var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&cuisinetype=${foodType}`;
+            }
+            else {
+                var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}`;
+
+            }
+        } else {
+
+            if (foodType != "") {
+                var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&cuisinetype=${foodType}`;
+            }
+            else {
+                var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}`;
+            }
+
+        }
+    
         getData(recipeUrl);
-        // for the other button that will check the nutritional value, use this URL
-        // recipeUrl = 'https://api.edamam.com/api/food-database/parser?ingr=${q}&app_id={app_id}&app_key={app_key}'
         function getData() {
             fetch(recipeUrl)
                 .then(function (response) {
@@ -45,9 +49,9 @@ $(document).ready(function () {
                         var calories = receipesDataBasedOnInput[i].recipe.calories;
                         var serving = receipesDataBasedOnInput[i].recipe.yield;
                         var calRange = calories / serving;
-                        var caloriesPerServing = $('<li>').text("Total Calories: " + calRange.toFixed(2) + " Kcal");
-                        var dietLabels = $('<li>').text("Diet Labels: " + receipesDataBasedOnInput[i].recipe.dietLabels);
-                        newDiv.append(title);
+                        var caloriesPerServing = $('<h4>').text("Total Calories: " + calRange.toFixed(2) + " Kcal");
+                        var dietLabels = $('<h4>').text("Diet Labels: " + receipesDataBasedOnInput[i].recipe.dietLabels);
+
 
                         var div = $('<ul>').attr('class', 'ingredients' + i);
                         for (var j = 0; j < receipesDataBasedOnInput[i].recipe.ingredients.length; j++) {
@@ -56,8 +60,8 @@ $(document).ready(function () {
                             div.append(li);
                         }
 
+                        newDiv.append(title);
                         newDiv.append(dietLabels);
-                        newDiv.append($('<br>'));
                         newDiv.append(caloriesPerServing);
                         newDiv.append($('<br>'));
                         newDiv.append(link);
@@ -66,11 +70,9 @@ $(document).ready(function () {
                         newDiv.append(linkText);
                         newDiv.append($('<br>'));
                         newDiv.append(div);
-
                         $('body').append(newDiv);
-                        if ($(window).width() <= 860) {
-                            div.css('position', 'absolute').css('right', '3px');
-                        }
+                        $('nav').show();
+
 
                     }
 
@@ -78,26 +80,81 @@ $(document).ready(function () {
 
         }
         $('nav').show();
+
         $('#nav1').click(function () {
             location.reload();
         })
 
         $('#nav2').click(function () {
-            $('div').remove();
-            var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&health=peanut-free`
+            $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4').remove();
+            if (calFrom != "" && calTo != "") {
+                if (foodType != "") {
+                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&cuisinetype=${foodType}&health=peanut-free`;
+                }
+                else {
+                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&health=peanut-free`;
+
+                }
+            } else {
+
+                if (foodType != "") {
+                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&cuisinetype=${foodType}&health=peanut-free`;
+                }
+                else {
+                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&health=peanut-free`;
+                }
+
+            }
             getData(recipeUrl);
         })
         $('#nav3').click(function () {
-            $('div').remove();
-            var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&health=tree-nut-free`
+            $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4').remove();
+            if (calFrom != "" && calTo != "") {
+                if (foodType != "") {
+                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&cuisinetype=${foodType}&health=tree-nut-free`;
+                }
+                else {
+                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&health=tree-nut-free`;
+
+                }
+            } else {
+
+                if (foodType != "") {
+                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&cuisinetype=${foodType}&health=tree-nut-free`;
+                }
+                else {
+                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&health=tree-nut-free`;
+                }
+
+            }
             getData(recipeUrl);
 
         })
         $('#nav4').click(function () {
-            $('div').remove();
-            var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&health=alcoho-free`
+            $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4').remove();
+            if (calFrom != "" && calTo != "") {
+                if (foodType != "") {
+                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&cuisinetype=${foodType}&health=alcoho-free`;
+                }
+                else {
+                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&health=alcoho-free`;
+
+                }
+            } else {
+
+                if (foodType != "") {
+                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&cuisinetype=${foodType}&health=alcoho-free`;
+                }
+                else {
+                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&health=alcoho-free`;
+                }
+
+            }
+
             getData(recipeUrl);
 
+        
         })
     })
+        
 })

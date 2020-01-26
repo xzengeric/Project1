@@ -33,7 +33,7 @@ $(document).ready(function () {
         }
 
         getData(recipeUrl);
-        function getData() {
+        function getData(recipeUrl) {
             fetch(recipeUrl)
                 .then(function (response) {
                     return response.json();
@@ -41,7 +41,7 @@ $(document).ready(function () {
                 .then(function (recipesData) {
                     console.log(recipesData);
                     var receipesDataBasedOnInput = recipesData.hits;
-                    
+
                     for (var i = 0; i < 5; i++) {
 
                         var newDiv = $('<div>').attr('class', 'recipe' + i);
@@ -61,13 +61,13 @@ $(document).ready(function () {
                             var ingredients = receipesDataBasedOnInput[i].recipe.ingredientLines[j];
                             var li = $('<li>').text(ingredients);
                             div.append(li);
-                           
+
                         }
 
-                        var  userInput = receipesDataBasedOnInput[i].recipe.label;
-                      
+                        var userInput = receipesDataBasedOnInput[i].recipe.label;
+
                         searchYoutude(newDiv, userInput);
-                        
+
 
                         newDiv.append(title);
                         newDiv.append(dietLabels);
@@ -87,7 +87,7 @@ $(document).ready(function () {
 
                 })
 
-            
+
         }
         $('nav').show();
 
@@ -97,92 +97,39 @@ $(document).ready(function () {
 
         $('#nav2').click(function () {
             $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4').remove();
-            if (calFrom != "" && calTo != "") {
-                if (foodType != "") {
-                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&cuisinetype=${foodType}&health=peanut-free`;
-                }
-                else {
-                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&health=peanut-free`;
-
-                }
-            } else {
-
-                if (foodType != "") {
-                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&cuisinetype=${foodType}&health=peanut-free`;
-                }
-                else {
-                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&health=peanut-free`;
-                }
-
-            }
-            getData(recipeUrl);
+            var Url = recipeUrl + "&health=vegan";
+            getData(Url);
         })
         $('#nav3').click(function () {
             $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4').remove();
-            if (calFrom != "" && calTo != "") {
-                if (foodType != "") {
-                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&cuisinetype=${foodType}&health=tree-nut-free`;
-                }
-                else {
-                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&health=tree-nut-free`;
-
-                }
-            } else {
-
-                if (foodType != "") {
-                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&cuisinetype=${foodType}&health=tree-nut-free`;
-                }
-                else {
-                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&health=tree-nut-free`;
-                }
-
-            }
-            getData(recipeUrl);
+            var Url = recipeUrl + "&health=vegetarian";
+            getData(Url);
 
         })
         $('#nav4').click(function () {
             $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4').remove();
-            if (calFrom != "" && calTo != "") {
-                if (foodType != "") {
-                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&cuisinetype=${foodType}&health=alcoho-free`;
-                }
-                else {
-                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&health=alcoho-free`;
-
-                }
-            } else {
-
-                if (foodType != "") {
-                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&cuisinetype=${foodType}&health=alcoho-free`;
-                }
-                else {
-                    var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&health=alcoho-free`;
-                }
-
-            }
-
-            getData(recipeUrl);
-
+            var Url = recipeUrl + "&health=alcohol-free";
+            getData(Url);
 
         })
     })
 
-//Youtube search engine. 
+    //Youtube search engine. 
 
-    function searchYoutude(newDiv,userInput) {
-        
+    function searchYoutude(newDiv, userInput) {
+
         //get from the input
         var q = "how to cook " + userInput;
 
         //get request on API
         $.get(
             "https://www.googleapis.com/youtube/v3/search", {
-            part: 'snippet, id',
-            q: q,
-            type: 'video',
-            maxResults: 1,
-            key: 'AIzaSyDT61zlLfAE3Q2q4t2VM_1i4VfRWrkwsSQ'
-        },
+                part: 'snippet, id',
+                q: q,
+                type: 'video',
+                maxResults: 1,
+                key: 'AIzaSyDT61zlLfAE3Q2q4t2VM_1i4VfRWrkwsSQ'
+            },
             function (data) {
 
                 $.each(data.items, function (i, item) {
@@ -210,13 +157,13 @@ $(document).ready(function () {
 
         var displayHTML = '<li>' +
             '<div class="#">' +
-            '<iframe class="#" width="640" height="360" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe> '  +
+            '<iframe class="#" width="640" height="360" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe> ' +
             '<h3>' + title + '</h3>' +
             '<h5>By <soan class="#">' + channelTitle + '</span> on ' + videoDate + '</h5>' +
             '<p>' + description + '</p>' +
             '</div>' +
             '</li>' +
-               '';
+            '';
 
         return displayHTML;
     }

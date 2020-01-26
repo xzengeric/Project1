@@ -52,8 +52,8 @@ $(document).ready(function () {
                         var calories = receipesDataBasedOnInput[i].recipe.calories;
                         var serving = receipesDataBasedOnInput[i].recipe.yield;
                         var calRange = calories / serving;
-                        var caloriesPerServing = $('<h4>').text("Total Calories: " + calRange.toFixed(2) + " Kcal");
-                        var dietLabels = $('<h4>').text("Diet Labels: " + receipesDataBasedOnInput[i].recipe.dietLabels);
+                        var caloriesPerServing = $('<h5>').text("Total Calories: " + calRange.toFixed(2) + " Kcal");
+                        var dietLabels = $('<h5>').text("Diet Labels: " + receipesDataBasedOnInput[i].recipe.dietLabels);
 
 
                         var div = $('<ul>').attr('class', 'ingredients' + i);

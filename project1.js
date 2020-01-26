@@ -79,10 +79,12 @@ $(document).ready(function () {
                         newDiv.append(linkText);
                         newDiv.append($('<br>'));
                         newDiv.append(div);
-                        $('body').append(newDiv);
+                        var row = $('<div>').attr('class','row');
+                        $('body').append(row);
+                        var columnLeft = $('<div>').attr('class', 'col s6').css('float', 'left');
+                        columnLeft.append(newDiv);
+                        row.append(columnLeft);
                         $('nav').show();
-
-
                     }
 
                 })
@@ -137,7 +139,9 @@ $(document).ready(function () {
                 $.each(data.items, function (i, item) {
                     var videoOutput = getOutput(item);
 
-                    newDiv.append(videoOutput);
+                    var columnright = $('<div>').attr('class','col s6').css('float','right');
+                    columnright.append(videoOutput);
+                    row.append(columnright);
                 });
             }
         );

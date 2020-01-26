@@ -25,6 +25,7 @@ p{
     height: 35px;
     width: auto;
     background-color: grey;
+    border-radius: 5px;
 }
 .col-to{
     margin-left: 30px;

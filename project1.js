@@ -128,7 +128,9 @@ $(document).ready(function () {
                 q: q,
                 type: 'video',
                 maxResults: 1,
-                key: 'AIzaSyDT61zlLfAE3Q2q4t2VM_1i4VfRWrkwsSQ'
+                // key: 'AIzaSyDT61zlLfAE3Q2q4t2VM_1i4VfRWrkwsSQ'
+                //backup apikey : 
+                key: 'AIzaSyAS6t09aF4WVJ-5DqY-2Dk5T33xtSrGUf0'
             },
             function (data) {
 

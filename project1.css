@@ -13,59 +13,31 @@ p{
 }
 .input{
  position: relative;
- left: 27%;
+ margin: 0 20%;
 }
 ::-webkit-input-placeholder {
     text-align: center;
     color: rgb(49, 58, 66);
  }
-.ing{
-    border-radius: 20px;
-    border:2px solid rgb(10, 105, 112);
-    width: 600px;
-    height: 35px;
-    background-color: cadetblue;
-    text-align: center;
-    color: aliceblue;
-    text-transform: uppercase;
 
-}
-.food-type{
-    border-radius: 20px;
-    border:2px solid rgb(10, 105, 112);
-    width: 600px;
-    height: 35px;
-    background-color: cadetblue;
-    text-align: center;
-    color: aliceblue;
-    text-transform: uppercase;
-}
 #submitButton{
     margin-top: 50px;
-    border-radius: 15px;
     height: 35px;
-    width: 600px;
+    width: auto;
     background-color: grey;
 }
 .col-to{
     margin-left: 30px;
-    border:2px solid rgb(112, 10, 10);
-    border-radius: 20px;
     width: 350px;
     height: 30px;
-    background-color: rgb(160, 95, 109);
-    color: aliceblue;
     text-align: center;
 }
 .col-from{
     margin-left: 30px;
     position: relative;
-    border-radius: 20px;
-    border:2px solid rgb(112, 10, 10);
     width: 350px;
     height: 30px;
-    background-color: rgb(160, 95, 109);
-    color: aliceblue;
+   
     text-align: center;
 }
 p{
@@ -80,24 +52,24 @@ nav{
     top:0;
     left:0;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 30px;
+    font-size: 15px;
     border-radius: 5px;
     border-top: 3px solid grey;
     border-bottom: 3px solid grey;
-
     color:white;
     width: 100%;
     border-radius: 10px;
-
 }
 #nav1, #nav2, #nav3, #nav4{
     background-color: black;
-    color: aliceblue;
-    height: 100%;
+    color: aliceblue;   
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
 }
 .recipe0{
     margin-top: 100px;
+}
+div{
+    margin-left: 10px;
 }

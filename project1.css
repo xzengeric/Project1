@@ -6,53 +6,71 @@ h1{
     font-family: 'Bangers', cursive;
     font-size: 100px;
 }
+
+p{
+    font-size: 13px;
+    float: left;
+}
 .input{
  position: relative;
- left: 27%;
+ margin: 0 20%;
 }
 ::-webkit-input-placeholder {
-    padding-left: 10px;
-    text-align: left;
+    text-align: center;
     color: rgb(49, 58, 66);
  }
-.ing{
-    border-radius: 20px;
-    border:2px solid rgb(10, 105, 112);
-    width: 600px;
-    height: 35px;
-    background-color: cadetblue;
-    text-align: center;
-    color: aliceblue;
-    text-transform: uppercase;
 
-}
-button{
+#submitButton{
     margin-top: 50px;
-    border-radius: 15px;
     height: 35px;
-    width: 600px;
+    width: auto;
     background-color: grey;
+    border-radius: 5px;
 }
 .col-to{
-    border:2px solid rgb(112, 10, 10);
-    border-radius: 20px;
-    width: 50px;
-    height: 20px;
-    background-color: rgb(160, 95, 109);
-    color: aliceblue;
+    margin-left: 30px;
+    width: 350px;
+    height: 30px;
+    text-align: center;
 }
 .col-from{
-    margin-top:50px;
+    margin-left: 30px;
     position: relative;
-    border-radius: 20px;
-    border:2px solid rgb(112, 10, 10);
-    width: 50px;
-    height: 20px;
-    background-color: rgb(160, 95, 109);
-    color: aliceblue;
+    width: 350px;
+    height: 30px;
+   
+    text-align: center;
 }
 p{
     display: inline;
     font-family: Arial, Helvetica, sans-serif;
     margin: 5px;
+}
+
+nav{
+    background-color: rgb(53, 49, 49);
+    position:fixed;
+    top:0;
+    left:0;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    border-radius: 5px;
+    border-top: 3px solid grey;
+    border-bottom: 3px solid grey;
+    color:white;
+    width: 100%;
+    border-radius: 10px;
+}
+#nav1, #nav2, #nav3, #nav4{
+    background-color: black;
+    color: aliceblue;   
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.recipe0{
+    margin-top: 100px;
+}
+div{
+    margin-left: 10px;
 }

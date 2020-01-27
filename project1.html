@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Recipe Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./project1.js"></script>
     <link rel="stylesheet" href="./project1.css">
@@ -13,13 +15,19 @@
 </head>
 
 <body>
+    <nav><button id="nav1">Go Back</button>
+        <div style="float: right"><button id="nav2">Vegan</button><button id="nav3">Vegetarian</button><button
+                id="nav4">Alcohol free</button></div>
+    </nav>
     <h1>Recipe Generator</h1>
     <div class="input">
-        <input class="ing" type="text" placeholder="INGREDIENTS"><br>
-        <p>Calories From (Kcal) (Per Serving):</p><input class="col-from" type="text">
-        <p>Calories To (Kcal) (Per Serving):</p><input class="col-to" type="text"><br>
-        <button id="submitButton">Submit</button>
+        <input class="ing" type="text" placeholder="INGREDIENTS"><br><br><br>
+        <input class="food-type" type="text" placeholder="Chinese/Brazilian/Spanish..."><br><br><br>
+        <p>Calories From (Kcal) (Per Serving):</p><input class="col-from" type="text"><br><br>
+        <p>Calories To&nbsp;&nbsp;&nbsp;&nbsp; (Kcal) (Per Serving):</p><input class="col-to" type="text"><br>
+        <button id="submitButton">GO GENERATE!</button>
     </div>
+    <div id="youtubeOutout"></div>
 </body>
 
 </html>

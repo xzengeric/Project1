@@ -32,7 +32,7 @@ $(document).ready(function () {
     var app_key = "66b497d1c74de44a3ee14c66199e0618";
 
     $("#submitButton").click(function () {
-        $('h1').hide();
+        $('h5').hide();
         $('.input').hide();
         var q = $('.ing').val();
 
@@ -172,7 +172,8 @@ $(document).ready(function () {
 
                     var columnright = $('<div>').attr('class','col s6').css('float','right');
                     columnright.append(videoOutput);
-                    row.append(columnright);
+                    // BUG: project1.js:175 Uncaught ReferenceError: row is not defined
+                    //row.append(columnright);
                 });
             }
         );

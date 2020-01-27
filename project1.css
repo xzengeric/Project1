@@ -33,7 +33,27 @@ p{
     width: auto;
     background-color: grey;
     border-radius: 5px;
+    /* display: flex; 
+    justify-content: center;
+    margin:200px; */
+    text-align: center;
+    display: block;
+  max-width: 300px;
+  margin: auto;
+  margin-top: 100px;
 }
+.grid-padding-large {
+    margin-top: 100px;
+
+}
+.grid-padding-small {
+
+    margin-top: 50px;
+}
+
+
+
+
 .col-to{
     margin-left: 30px;
     width: 350px;

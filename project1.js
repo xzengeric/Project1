@@ -3,6 +3,7 @@ $(document).ready(function () {
     var app_id = "98b05697";
     var app_key = "66b497d1c74de44a3ee14c66199e0618";
 
+
     $("#submitButton").click(function () {
         $('h1').hide();
         $('.input').hide();
@@ -41,9 +42,7 @@ $(document).ready(function () {
                 .then(function (recipesData) {
                     console.log(recipesData);
                     var receipesDataBasedOnInput = recipesData.hits;
-
-                    for (var i = 0; i < 5; i++) {
-
+                    for (var i = 0; i < recipesData.hits.length; i++) {
                         var newDiv = $('<div>').attr('class', 'recipe' + i);
                         var title = $('<h2>').text(receipesDataBasedOnInput[i].recipe.label);
                         var img = $('<img>').attr('src', receipesDataBasedOnInput[i].recipe.image).attr('href', receipesDataBasedOnInput[i].recipe.url).attr('width', '300px').attr('height', '300px');
@@ -54,7 +53,6 @@ $(document).ready(function () {
                         var calRange = calories / serving;
                         var caloriesPerServing = $('<h5>').text("Total Calories: " + calRange.toFixed(2) + " Kcal");
                         var dietLabels = $('<h5>').text("Diet Labels: " + receipesDataBasedOnInput[i].recipe.dietLabels);
-
 
                         var div = $('<ul>').attr('class', 'ingredients' + i);
                         for (var j = 0; j < receipesDataBasedOnInput[i].recipe.ingredients.length; j++) {
@@ -79,11 +77,7 @@ $(document).ready(function () {
                         newDiv.append(linkText);
                         newDiv.append($('<br>'));
                         newDiv.append(div);
-                        var row = $('<div>').attr('class','row');
-                        $('body').append(row);
-                        var columnLeft = $('<div>').attr('class', 'col s6').css('float', 'left');
-                        columnLeft.append(newDiv);
-                        row.append(columnLeft);
+                        $('#recipeOutput').append(newDiv);
                         $('nav').show();
                     }
 
@@ -138,10 +132,7 @@ $(document).ready(function () {
 
                 $.each(data.items, function (i, item) {
                     var videoOutput = getOutput(item);
-
-                    var columnright = $('<div>').attr('class','col s6').css('float','right');
-                    columnright.append(videoOutput);
-                    row.append(columnright);
+                    $('#youtubeOutput').append(videoOutput);
                 });
             }
         );

@@ -97,7 +97,7 @@ nav{
     padding: 10px;
     border-radius: 10px;
 }
-.recipe0{
+#recipeOutput,#youtubeOutput{
     margin-top: 100px;
 }
 div{

@@ -1,15 +1,47 @@
 $(document).ready(function () {
+
+    // Slider
+    var slider = document.getElementById("slider");
+    if(slider == null)
+    {
+        alert("slider not found");
+    }
+
+    noUiSlider.create(slider, {
+     start: [50, 250],
+     connect: true,
+     tooltips: true,
+     step: 1,
+     orientation: 'horizontal', // 'horizontal' or 'vertical'
+     range: {
+       'min': 30,
+       'max': 2000
+     },
+     format: {
+        from: function(value) {
+                return parseInt(value);
+            },
+        to: function(value) {
+                return parseInt(value);
+            }
+        }
+    });
+
     $('nav').hide();
     var app_id = "98b05697";
     var app_key = "66b497d1c74de44a3ee14c66199e0618";
 
 
     $("#submitButton").click(function () {
-        $('h1').hide();
+        $('h5').hide();
         $('.input').hide();
         var q = $('.ing').val();
-        var calFrom = $('.col-from').val();
-        var calTo = $('.col-to').val();
+
+        var slider = document.getElementById("slider");
+        var calRange = slider.noUiSlider.get();
+        var calFrom = calRange[0]; //$('.col-from').val();
+        var calTo = calRange[1]; //$('.col-to').val();
+
         var foodType = $('.food-type').val();
 
         if (calFrom != "" && calTo != "") {
@@ -28,9 +60,6 @@ $(document).ready(function () {
             else {
                 var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}`;
             }
-
-
-
         }
 
         getData(recipeUrl);
@@ -44,6 +73,7 @@ $(document).ready(function () {
                     var receipesDataBasedOnInput = recipesData.hits;
                     for (var i = 0; i < recipesData.hits.length; i++) {
                         var newDiv = $('<div>').attr('class', 'recipe' + i);
+                        //var newDiv = $('<div>').attr('class', `${recipe}${i} col s6`);
                         var title = $('<h2>').text(receipesDataBasedOnInput[i].recipe.label);
                         var img = $('<img>').attr('src', receipesDataBasedOnInput[i].recipe.image).attr('href', receipesDataBasedOnInput[i].recipe.url).attr('width', '300px').attr('height', '300px');
                         var link = $('<a>').attr('href', receipesDataBasedOnInput[i].recipe.url);

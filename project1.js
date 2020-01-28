@@ -26,7 +26,6 @@ $(document).ready(function () {
             }
         }
     });
-
     $('nav').hide();
     var app_id = "98b05697";
     var app_key = "66b497d1c74de44a3ee14c66199e0618";
@@ -41,8 +40,9 @@ $(document).ready(function () {
         var calRange = slider.noUiSlider.get();
         var calFrom = calRange[0]; //$('.col-from').val();
         var calTo = calRange[1]; //$('.col-to').val();
-
+        
         var foodType = $('.food-type').val();
+
 
         if (calFrom != "" && calTo != "") {
             if (foodType != "") {
@@ -60,6 +60,9 @@ $(document).ready(function () {
             else {
                 var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}`;
             }
+
+
+
         }
 
         getData(recipeUrl);
@@ -73,7 +76,6 @@ $(document).ready(function () {
                     var receipesDataBasedOnInput = recipesData.hits;
                     for (var i = 0; i < recipesData.hits.length; i++) {
                         var newDiv = $('<div>').attr('class', 'recipe' + i);
-                        //var newDiv = $('<div>').attr('class', `${recipe}${i} col s6`);
                         var title = $('<h2>').text(receipesDataBasedOnInput[i].recipe.label);
                         var img = $('<img>').attr('src', receipesDataBasedOnInput[i].recipe.image).attr('href', receipesDataBasedOnInput[i].recipe.url).attr('width', '300px').attr('height', '300px');
                         var link = $('<a>').attr('href', receipesDataBasedOnInput[i].recipe.url);
@@ -154,9 +156,9 @@ $(document).ready(function () {
                 q: q,
                 type: 'video',
                 maxResults: 1,
-                // key: 'AIzaSyDT61zlLfAE3Q2q4t2VM_1i4VfRWrkwsSQ'
+                key: 'AIzaSyDT61zlLfAE3Q2q4t2VM_1i4VfRWrkwsSQ'
                 //backup apikey : 
-                key: 'AIzaSyAS6t09aF4WVJ-5DqY-2Dk5T33xtSrGUf0'
+                // key: 'AIzaSyAS6t09aF4WVJ-5DqY-2Dk5T33xtSrGUf0'
             },
             function (data) {
 

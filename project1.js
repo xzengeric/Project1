@@ -34,6 +34,8 @@ $(document).ready(function () {
     $("#submitButton").click(function () {
         $('h5').hide();
         $('.input').hide();
+
+        // Pass user's input to q .
         var q = $('.ing').val();
 
         var slider = document.getElementById("slider");
@@ -66,7 +68,12 @@ $(document).ready(function () {
         }
 
         getData(recipeUrl);
+
+
         function getData(recipeUrl) {
+
+         
+            
             fetch(recipeUrl)
                 .then(function (response) {
                     return response.json();
@@ -132,18 +139,23 @@ $(document).ready(function () {
         })
 
         $('#nav2').click(function () {
-            $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4').remove();
+            $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4,.recipe5,.recipe6,.recipe7,.recipe8,.recipe9').remove();
+            $(".row").remove();
             var Url = recipeUrl + "&health=vegan";
             getData(Url);
         })
         $('#nav3').click(function () {
-            $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4').remove();
+            $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4,.recipe5,.recipe6,.recipe7,.recipe8,.recipe9').remove();
+            $(".row").remove();
+
             var Url = recipeUrl + "&health=vegetarian";
             getData(Url);
 
         })
         $('#nav4').click(function () {
-            $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4').remove();
+            $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4,.recipe5,.recipe6,.recipe7,.recipe8,.recipe9').remove();
+            $(".row").remove();
+
             var Url = recipeUrl + "&health=alcohol-free";
             getData(Url);
 
@@ -155,6 +167,8 @@ $(document).ready(function () {
 
     function searchYoutude(row, userInput) {
 
+
+        
         //get from the input
         var q = "how to cook " + userInput;
 
@@ -167,12 +181,16 @@ $(document).ready(function () {
                 maxResults: 1,
                 // key: 'AIzaSyDT61zlLfAE3Q2q4t2VM_1i4VfRWrkwsSQ'
                 //backup apikey : 
-                key: 'AIzaSyAS6t09aF4WVJ-5DqY-2Dk5T33xtSrGUf0'
+                // key: 'AIzaSyAS6t09aF4WVJ-5DqY-2Dk5T33xtSrGUf0'
+                // 3rd apikey :
+                // key: 'AIzaSyCRe5afhFZWXNUYJ5isXjPzc4sJUBL4p2g'
+                //4th ApiKey :
+                key: 'AIzaSyBHRgxrv1FgsBl1JIgC9UnJ3zXgvJPLwAQ'
             },
             function (data) {
 
                 $.each(data.items, function (i, item) {
-                    var videoOutput = getOutput(item);
+                    var videoOutput = getOutput(i,item);
                     row.append(videoOutput);
                 });
             }
@@ -182,7 +200,7 @@ $(document).ready(function () {
 
     //build output
 
-    function getOutput(item) {
+    function getOutput(i,item) {
 
         var videoId = item.id.videoId;
         var title = item.snippet.title;
@@ -195,8 +213,8 @@ $(document).ready(function () {
 
         var displayHTML = '<li class = "col s6">' +
             '<div class="#">' +
+            '<h2>' + title + '</h2>' +
             '<iframe class="#" width = "640" height = "360" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe> ' +
-            '<h3>' + title + '</h3>' +
             '<h5>By <soan class="#">' + channelTitle + '</span> on ' + videoDate + '</h5>' +
             '<p>' + description + '</p>' +
             '</div>' +

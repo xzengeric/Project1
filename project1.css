@@ -111,9 +111,10 @@ iframe{
             font-size: 20px;
         }
         #nav1, #nav2, #nav3, #nav4{
-            font-size: 9px;
+            font-size: 6px;
         }
         #filterButtons{
+            
             float: left;
         }
        h2,h3{
@@ -126,5 +127,5 @@ iframe{
         width: 320px;
         height: 180px;
     }
-
+        
   }

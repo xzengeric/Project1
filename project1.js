@@ -31,6 +31,7 @@ $(document).ready(function () {
 
 
     $("#submitButton").click(function () {
+        $('body').css("background-image", "url('./source/food.png')").css('background-repeat', 'repeat').css('background-size','auto');
         $('h5').hide();
         $('.input').hide();
 

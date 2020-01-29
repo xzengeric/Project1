@@ -43,29 +43,20 @@ $(document).ready(function () {
         var calFrom = calRange[0]; //$('.col-from').val();
         var calTo = calRange[1]; //$('.col-to').val();
         
-        var foodType = $('.food-type').val();
+        // var foodType = $('.food-type').val();
 
 
         if (calFrom != "" && calTo != "") {
-            if (foodType != "") {
-                var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}&cuisinetype=${foodType}`;
-            }
-            else {
+           
                 var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}`;
-
-            }
-        } else {
-
-            if (foodType != "") {
-                var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&cuisinetype=${foodType}`;
-            }
-            else {
-                var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}`;
-            }
-
-
-
         }
+        else {
+                var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}`;
+        }
+
+            
+      
+        
 
         getData(recipeUrl);
 
@@ -139,13 +130,11 @@ $(document).ready(function () {
         })
 
         $('#nav2').click(function () {
-            $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4,.recipe5,.recipe6,.recipe7,.recipe8,.recipe9').remove();
             $(".row").remove();
             var Url = recipeUrl + "&health=vegan";
             getData(Url);
         })
         $('#nav3').click(function () {
-            $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4,.recipe5,.recipe6,.recipe7,.recipe8,.recipe9').remove();
             $(".row").remove();
 
             var Url = recipeUrl + "&health=vegetarian";
@@ -153,7 +142,6 @@ $(document).ready(function () {
 
         })
         $('#nav4').click(function () {
-            $('.recipe0, .recipe1, .recipe2, .recipe3, .recipe4,.recipe5,.recipe6,.recipe7,.recipe8,.recipe9').remove();
             $(".row").remove();
 
             var Url = recipeUrl + "&health=alcohol-free";
@@ -214,7 +202,7 @@ $(document).ready(function () {
         var displayHTML = '<li class = "col s6">' +
             '<div class="#">' +
             '<h2>' + title + '</h2>' +
-            '<iframe class="#" width = "640" height = "360" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe> ' +
+            '<iframe class="youtubeVideo" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe> ' +
             '<h5>By <soan class="#">' + channelTitle + '</span> on ' + videoDate + '</h5>' +
             '<p>' + description + '</p>' +
             '</div>' +
@@ -226,8 +214,6 @@ $(document).ready(function () {
     
     if ($(window).width() <= 600) {
         $('li').removeClass('col s6');
-        $('iframe').width = 320;
-        $('iframe').height = 180;
                 }	
 
 

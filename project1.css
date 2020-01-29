@@ -99,6 +99,10 @@ li{
     list-style-type: none;
     margin-top: 30px;
        }
+iframe{
+    width: 640px;
+    height: 360px;
+}
 @media only screen and (max-width: 600px) {
     h1 {
         font-size: 40px;
@@ -118,5 +122,9 @@ li{
        h5{
            font-size:15px;
        }
+       iframe{
+        width: 320px;
+        height: 180px;
+    }
 
   }

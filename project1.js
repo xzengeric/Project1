@@ -75,7 +75,7 @@ $(document).ready(function () {
                     console.log(recipesData);
                     var receipesDataBasedOnInput = recipesData.hits;
                     for (var i = 0; i < recipesData.hits.length; i++) {
-                        var newDiv = $('<div>').attr('class', 'recipe' + i);
+                        var newDiv = $('<div>').attr('class', 'recipe' + i).addClass('col s6');
                         var title = $('<h2>').text(receipesDataBasedOnInput[i].recipe.label);
                         var img = $('<img>').attr('src', receipesDataBasedOnInput[i].recipe.image).attr('href', receipesDataBasedOnInput[i].recipe.url).attr('width', '300px').attr('height', '300px');
                         var link = $('<a>').attr('href', receipesDataBasedOnInput[i].recipe.url);
@@ -85,18 +85,23 @@ $(document).ready(function () {
                         var calRange = calories / serving;
                         var caloriesPerServing = $('<h5>').text("Total Calories: " + calRange.toFixed(2) + " Kcal");
                         var dietLabels = $('<h5>').text("Diet Labels: " + receipesDataBasedOnInput[i].recipe.dietLabels);
-
+                        var row = $('<div>').attr('class', 'row').attr('id','row');
                         var div = $('<ul>').attr('class', 'ingredients' + i);
+                    
+                       
+
                         for (var j = 0; j < receipesDataBasedOnInput[i].recipe.ingredients.length; j++) {
                             var ingredients = receipesDataBasedOnInput[i].recipe.ingredientLines[j];
                             var li = $('<li>').text(ingredients);
                             div.append(li);
 
                         }
+                        if ($(window).width() <= 600) {
+                            newDiv.removeClass('col s6');
+                        }
 
                         var userInput = receipesDataBasedOnInput[i].recipe.label;
 
-                        searchYoutude(newDiv, userInput);
 
 
                         newDiv.append(title);
@@ -109,8 +114,11 @@ $(document).ready(function () {
                         newDiv.append(linkText);
                         newDiv.append($('<br>'));
                         newDiv.append(div);
-                        $('#recipeOutput').append(newDiv);
+                        row.append(newDiv);
+                        $('.recipeAndYoutubeOutput').append(row);
                         $('nav').show();
+                        searchYoutude(row, userInput);
+
                     }
 
                 })
@@ -142,9 +150,10 @@ $(document).ready(function () {
         })
     })
 
+
     //Youtube search engine. 
 
-    function searchYoutude(newDiv, userInput) {
+    function searchYoutude(row, userInput) {
 
         //get from the input
         var q = "how to cook " + userInput;
@@ -156,15 +165,15 @@ $(document).ready(function () {
                 q: q,
                 type: 'video',
                 maxResults: 1,
-                key: 'AIzaSyDT61zlLfAE3Q2q4t2VM_1i4VfRWrkwsSQ'
+                // key: 'AIzaSyDT61zlLfAE3Q2q4t2VM_1i4VfRWrkwsSQ'
                 //backup apikey : 
-                // key: 'AIzaSyAS6t09aF4WVJ-5DqY-2Dk5T33xtSrGUf0'
+                key: 'AIzaSyAS6t09aF4WVJ-5DqY-2Dk5T33xtSrGUf0'
             },
             function (data) {
 
                 $.each(data.items, function (i, item) {
                     var videoOutput = getOutput(item);
-                    $('#youtubeOutput').append(videoOutput);
+                    row.append(videoOutput);
                 });
             }
         );
@@ -184,9 +193,9 @@ $(document).ready(function () {
 
         //Output string # is where we can repleace with the class name !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        var displayHTML = '<li>' +
+        var displayHTML = '<li class = "col s6">' +
             '<div class="#">' +
-            '<iframe class="#" width="640" height="360" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe> ' +
+            '<iframe class="#" width = "640" height = "360" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe> ' +
             '<h3>' + title + '</h3>' +
             '<h5>By <soan class="#">' + channelTitle + '</span> on ' + videoDate + '</h5>' +
             '<p>' + description + '</p>' +
@@ -196,5 +205,12 @@ $(document).ready(function () {
 
         return displayHTML;
     }
+    
+    if ($(window).width() <= 600) {
+        $('li').removeClass('col s6');
+        $('iframe').width = 320;
+        $('iframe').height = 180;
+                }	
+
 
 })

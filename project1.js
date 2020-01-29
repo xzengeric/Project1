@@ -249,10 +249,10 @@ $(document).ready(function () {
         var ww = document.body.clientWidth;
         if (ww <= 600) {
             $('li').removeClass('col s6');
-            $('#titleDisplayID').hide();
+      
         } else{
             $('li').addClass('col s6');
-            $('#titleDisplayID').show();
+          
 
         }
 

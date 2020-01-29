@@ -2,26 +2,25 @@ $(document).ready(function () {
 
     // Slider
     var slider = document.getElementById("slider");
-    if(slider == null)
-    {
+    if (slider == null) {
         alert("slider not found");
     }
 
     noUiSlider.create(slider, {
-     start: [50, 250],
-     connect: true,
-     tooltips: true,
-     step: 1,
-     orientation: 'horizontal', // 'horizontal' or 'vertical'
-     range: {
-       'min': 30,
-       'max': 2000
-     },
-     format: {
-        from: function(value) {
+        start: [50, 250],
+        connect: true,
+        tooltips: true,
+        step: 1,
+        orientation: 'horizontal', // 'horizontal' or 'vertical'
+        range: {
+            'min': 30,
+            'max': 2000
+        },
+        format: {
+            from: function (value) {
                 return parseInt(value);
             },
-        to: function(value) {
+            to: function (value) {
                 return parseInt(value);
             }
         }
@@ -32,7 +31,7 @@ $(document).ready(function () {
 
 
     $("#submitButton").click(function () {
-        $('body').css("background-image", "url('./source/food.png')");
+        $('body').css("background-image", "url('./source/food.png')").css('background-repeat', 'repeat').css('background-size','auto');
         $('h5').hide();
         $('.input').hide();
 
@@ -43,29 +42,29 @@ $(document).ready(function () {
         var calRange = slider.noUiSlider.get();
         var calFrom = calRange[0]; //$('.col-from').val();
         var calTo = calRange[1]; //$('.col-to').val();
-        
+
         // var foodType = $('.food-type').val();
 
 
         if (calFrom != "" && calTo != "") {
-           
-                var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}`;
+
+            var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}&calories=${calFrom}-${calTo}`;
         }
         else {
-                var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}`;
+            var recipeUrl = `https://api.edamam.com/search?q=${q}&app_id=${app_id}&app_key=${app_key}`;
         }
 
-            
-      
-        
+
+
+
 
         getData(recipeUrl);
 
 
         function getData(recipeUrl) {
 
-         
-            
+
+
             fetch(recipeUrl)
                 .then(function (response) {
                     return response.json();
@@ -84,10 +83,10 @@ $(document).ready(function () {
                         var calRange = calories / serving;
                         var caloriesPerServing = $('<h5>').text("Total Calories: " + calRange.toFixed(2) + " Kcal");
                         var dietLabels = $('<h5>').text("Diet Labels: " + receipesDataBasedOnInput[i].recipe.dietLabels);
-                        var row = $('<div>').attr('class', 'row').attr('id','row');
+                        var row = $('<div>').attr('class', 'row').attr('id', 'row');
                         var div = $('<ul>').attr('class', 'ingredients' + i);
-                    
-                       
+
+
 
                         for (var j = 0; j < receipesDataBasedOnInput[i].recipe.ingredients.length; j++) {
                             var ingredients = receipesDataBasedOnInput[i].recipe.ingredientLines[j];
@@ -157,39 +156,66 @@ $(document).ready(function () {
     function searchYoutude(row, userInput) {
 
 
-        
+
         //get from the input
         var q = "how to cook " + userInput;
 
         //get request on API
         $.get(
             "https://www.googleapis.com/youtube/v3/search", {
-                part: 'snippet, id',
-                q: q,
-                type: 'video',
-                maxResults: 1,
-                key: 'AIzaSyDT61zlLfAE3Q2q4t2VM_1i4VfRWrkwsSQ'
-                //backup apikey : 
-                // key: 'AIzaSyAS6t09aF4WVJ-5DqY-2Dk5T33xtSrGUf0'
-                // 3rd apikey :
-                // key: 'AIzaSyCRe5afhFZWXNUYJ5isXjPzc4sJUBL4p2g'
-                //4th ApiKey :
-                // key: 'AIzaSyBHRgxrv1FgsBl1JIgC9UnJ3zXgvJPLwAQ'
-            },
+            part: 'snippet, id',
+            q: q,
+            type: 'video',
+            maxResults: 1,
+            // key: 'AIzaSyDT61zlLfAE3Q2q4t2VM_1i4VfRWrkwsSQ' 
+            //backup apikey : 
+            key: 'AIzaSyAS6t09aF4WVJ-5DqY-2Dk5T33xtSrGUf0'
+            // 3rd apikey :
+            // key: 'AIzaSyCRe5afhFZWXNUYJ5isXjPzc4sJUBL4p2g'
+            //4th ApiKey :
+            // key: 'AIzaSyBHRgxrv1FgsBl1JIgC9UnJ3zXgvJPLwAQ'
+        },
             function (data) {
 
                 $.each(data.items, function (i, item) {
-                    var videoOutput = getOutput(i,item);
+
+                    var videoOutput = getOutput(i, item);
+
                     row.append(videoOutput);
                 });
             }
-        );
+
+            // if it failed , it will display this massage. 
+        ).fail(function () {
+
+            $.each(row, function (i, item) {
+
+                var videoOutput = getOutputError(i, item);
+
+                row.append(videoOutput);
+            });
+        })
+
+
     }
 
+    //build error output
 
+    function getOutputError(item) {
+
+
+        var ErrorMassage = " Video is cooking..."
+        var displayHTML = '<li class = "col s6">' +
+            '<div class="#">' +
+            '<h2 style="color: #87CEEB">' + ErrorMassage + '</h2>';
+
+        return displayHTML;
+
+
+    }
     //build output
 
-    function getOutput(i,item) {
+    function getOutput(i, item) {
 
         var videoId = item.id.videoId;
         var title = item.snippet.title;
@@ -202,7 +228,7 @@ $(document).ready(function () {
 
         var displayHTML = '<li class = "col s6">' +
             '<div class="#">' +
-            '<h2>' + title + '</h2>' +
+            '<h2 id="titleDisplayID">' + title + '</h2>' +
             '<iframe class="youtubeVideo" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe> ' +
             '<h5>By <soan class="#">' + channelTitle + '</span> on ' + videoDate + '</h5>' +
             '<p>' + description + '</p>' +
@@ -212,10 +238,29 @@ $(document).ready(function () {
 
         return displayHTML;
     }
-    
-    if ($(window).width() <= 600) {
-        $('li').removeClass('col s6');
-                }	
 
+    // if ($(window).width() <= 600) {
+    //     $('li').removeClass('col s6');
+    // }
+
+
+// more reponsive 
+
+    var alterClass = function () {
+        var ww = document.body.clientWidth;
+        if (ww <= 600) {
+            $('li').removeClass('col s6');
+      
+        } else{
+            $('li').addClass('col s6');
+          
+
+        }
+
+    };
+
+    $(window).resize(function () {
+        alterClass();
+    });
 
 })

@@ -1,5 +1,8 @@
 body{
-    background-image: url(./source/food.png);
+    background-image: url("./source/carrots-food-fresh-freshness-616401.jpg");
+    background-blend-mode: soft-light;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1{

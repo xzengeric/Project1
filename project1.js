@@ -77,11 +77,11 @@ $(document).ready(function () {
                         var title = $('<h2>').text(receipesDataBasedOnInput[i].recipe.label);
                         var img = $('<img>').attr('src', receipesDataBasedOnInput[i].recipe.image).attr('href', receipesDataBasedOnInput[i].recipe.url).attr('width', '300px').attr('height', '300px');
                         var link = $('<a>').attr('href', receipesDataBasedOnInput[i].recipe.url);
-                        var linkText = $('<p>').text('Click Img link to the whole recipe!').css('color', 'grey');
+                        var linkText = $('<p>').text('Click image to see the whole recipe!').css('color', 'grey');
                         var calories = receipesDataBasedOnInput[i].recipe.calories;
                         var serving = receipesDataBasedOnInput[i].recipe.yield;
                         var calRange = calories / serving;
-                        var caloriesPerServing = $('<h5>').text("Total Calories: " + calRange.toFixed(2) + " Kcal");
+                        var caloriesPerServing = $('<h5>').text("Total Calories: " + calRange.toFixed(0) + " Kcal");
                         var dietLabels = $('<h5>').text("Diet Labels: " + receipesDataBasedOnInput[i].recipe.dietLabels);
                         var row = $('<div>').attr('class', 'row').attr('id', 'row');
                         var div = $('<ul>').attr('class', 'ingredients' + i);

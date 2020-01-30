@@ -159,6 +159,7 @@ iframe{
 
 
   #slider {
+margin-top: 35px;
 
     
   }
@@ -169,3 +170,8 @@ iframe{
   margin-bottom:1.5rem !important
 }
   
+
+
+  h6 {
+      margin-top: 30px;
+  }

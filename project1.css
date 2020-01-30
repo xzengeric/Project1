@@ -150,9 +150,22 @@ iframe{
         .grid-padding-large, .grid-padding-small{
             font-size: 5px;
         }
+        #titleDisplayID{
+            display: none;
+        }
 
   }
+
+
+
   #slider {
 
     
   }
+
+
+  .hrStyle {
+
+  margin-bottom:1.5rem !important
+}
+  

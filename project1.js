@@ -116,7 +116,7 @@ $(document).ready(function () {
                         $('.recipeAndYoutubeOutput').append(row);
                         $('nav').show();
                         searchYoutude(row, userInput);
-
+                        row.append($('<hr class="hrStyle">'));
                     }
 
                 })
@@ -167,9 +167,14 @@ $(document).ready(function () {
             q: q,
             type: 'video',
             maxResults: 1,
-            // key: 'AIzaSyDT61zlLfAE3Q2q4t2VM_1i4VfRWrkwsSQ' 
+
+            //Main key ( THIS IS FOR THE PRESENTATION!!! ) Before push, Please leave this always actived with the file! 
+             key: 'AIzaSyDT61zlLfAE3Q2q4t2VM_1i4VfRWrkwsSQ' 
+
+             // Please use the keys below to test things
+
             //backup apikey : 
-            key: 'AIzaSyAS6t09aF4WVJ-5DqY-2Dk5T33xtSrGUf0'
+            // key: 'AIzaSyAS6t09aF4WVJ-5DqY-2Dk5T33xtSrGUf0'
             // 3rd apikey :
             // key: 'AIzaSyCRe5afhFZWXNUYJ5isXjPzc4sJUBL4p2g'
             //4th ApiKey :
@@ -207,7 +212,7 @@ $(document).ready(function () {
         var ErrorMassage = " Video is cooking..."
         var displayHTML = '<li class = "col s6">' +
             '<div class="#">' +
-            '<h2 style="color: #87CEEB">' + ErrorMassage + '</h2>';
+            '<h2 id="titleDisplayID" style="color: #87CEEB">' + ErrorMassage + '</h2>'+ '</div></li>';
 
         return displayHTML;
 
@@ -238,10 +243,6 @@ $(document).ready(function () {
 
         return displayHTML;
     }
-
-    // if ($(window).width() <= 600) {
-    //     $('li').removeClass('col s6');
-    // }
 
 
 // more reponsive 

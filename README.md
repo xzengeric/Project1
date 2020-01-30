@@ -14,15 +14,13 @@ The motivation of an user to look for our website is to find New Year's Resoluti
 
 # How to Use
 The user can type one or more ingredients where it says "ingredients," with, or without comma. Another option is to add the calorie range by moving the slider from/to the specific range needed.
-Once the results show, there are filters that may be added in case of a more refined search with a food restriction result. There will be a list of recipes with a picture that can be clicked on to have a full written recipe. There will be also another list of YouTube videos in case the user prefers to watch the recipe being made.
+Once the results show, there are filters that may be applied in case of a more refined search with a food restriction result. There will be a list of recipes with a picture that can be clicked on to have a full written recipe. There will be also another list of YouTube videos in case the user prefers to watch the recipe being made.
 
 # Technologies used
-JavaScript
-jQuery
+JavaScript/jQuery
 7Materialize
-APIs
+APIs, GoogleApis, YouTube, Edamam (food/nutrition)
 noUiSlider (JavaScript range slider library)
-YouTube
 
 
 

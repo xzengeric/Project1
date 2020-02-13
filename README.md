@@ -22,5 +22,8 @@ JavaScript/jQuery
 APIs, GoogleApis, YouTube, Edamam (food/nutrition)
 noUiSlider (JavaScript range slider library)
 
+# Pin - Homework - Professional Materials
+link to the deployed project:
 
+https://xzengeric.github.io/Project1/project1.html
 
